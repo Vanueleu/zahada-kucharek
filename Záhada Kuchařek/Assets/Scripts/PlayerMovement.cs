@@ -9,10 +9,18 @@ private float speed = 8f;
 private float jumpingPower = 16f;
 private bool isFacingRight = true;
 
+private Animator anim;
+
 [SerializeField] private Rigidbody2D rb;
 [SerializeField] private Transform groundCheck;
 [SerializeField] private LayerMask groundLayer;
 
+
+void Start () {
+
+anim = GetComponent<Animator>();
+
+}
 
 void Update () {
 
@@ -20,6 +28,7 @@ void Update () {
 
     if (Input.GetButtonDown("Jump") && IsGrounded())
     {
+        anim.SetTrigger("Jump");
         rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
     }
 
@@ -28,12 +37,29 @@ void Update () {
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
     }
 
+    float moveInput = Input.GetAxisRaw("Horizontal");
+    
+    
+    if ( moveInput == 0 ) {
+        anim.SetBool("IsRunning", false);
+    }
+    else {
+        anim.SetBool("IsRunning", true);
+    }
+
+    if (IsGrounded()) {
+        anim.SetBool("IsJumping", false);
+    }
+    else {
+    anim.SetBool("IsJumping", true);
+    }
+    
     Flip();
 
 
 }
 
- private void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
