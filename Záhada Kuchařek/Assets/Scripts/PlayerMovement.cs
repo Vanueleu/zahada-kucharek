@@ -15,6 +15,15 @@ private Animator anim;
 [SerializeField] private Transform groundCheck;
 [SerializeField] private LayerMask groundLayer;
 
+SavePlayerPos playerPosData;
+
+
+private void Awake()
+{
+    playerPosData = FindObjectOfType<SavePlayerPos>();
+    playerPosData.PlayerPosLoad();
+}
+
 
 void Start () {
 
