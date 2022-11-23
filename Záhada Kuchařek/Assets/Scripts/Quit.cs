@@ -8,6 +8,7 @@ public class Quit : MonoBehaviour
     
     SavePlayerPos playerPosData;
 
+
     void Start()
     {
         playerPosData = FindObjectOfType<SavePlayerPos>();

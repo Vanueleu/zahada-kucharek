@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("p_x");
         PlayerPrefs.DeleteKey("p_y");
+        PlayerPrefs.DeleteKey("activeScene");
         PlayerPrefs.DeleteKey("TimeToLoad");
         PlayerPrefs.DeleteKey("Saved");
         SceneManager.LoadScene("MAIN");
@@ -16,6 +17,15 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("MAIN");
+        if(PlayerPrefs.GetInt("LoadSaved") == 1)
+        {
+
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+
+        }
+        else
+        {
+            return;
+        }
     }
 }

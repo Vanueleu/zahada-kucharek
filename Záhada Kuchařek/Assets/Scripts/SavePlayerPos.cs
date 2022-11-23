@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class SavePlayerPos : MonoBehaviour
 {
     public GameObject player;
 
-    private void Start (){
+
+    public void Start()
+    {
         if (PlayerPrefs.GetInt("Saved") == 1 && PlayerPrefs.GetInt("TimeToLoad") == 1)
         {
         float pX = player.transform.position.x;
@@ -24,6 +27,8 @@ public class SavePlayerPos : MonoBehaviour
     {
       PlayerPrefs.SetFloat("p_x", player.transform.position.x);
       PlayerPrefs.SetFloat("p_y", player.transform.position.y);
+      PlayerPrefs.SetInt("LoadSaved", 1);
+      PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
       PlayerPrefs.SetInt("Saved", 1);
       PlayerPrefs.Save();
     }
