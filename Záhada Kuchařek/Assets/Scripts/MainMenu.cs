@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("activeScene");
         PlayerPrefs.DeleteKey("TimeToLoad");
         PlayerPrefs.DeleteKey("Saved");
-        SceneManager.LoadScene("MAIN");
+        SceneManager.LoadScene("Tutorial 1");
     }
 
     public void LoadGame()
