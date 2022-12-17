@@ -13,7 +13,7 @@ public class NPC : MonoBehaviour
 
     public GameObject contButton;
     public float wordSpeed;
-    public bool playerIsClose;
+    public bool playerIsClose; 
 
     // Update is called once per frame
     void Update()
@@ -36,12 +36,12 @@ public class NPC : MonoBehaviour
 
             }
 
-            if (dialogText.text == dialog[index])
-            {
-                
-                contButton.SetActive(true);
+        }
 
-            }
+        if (dialogText.text == dialog[index])
+        {
+             
+            contButton.SetActive(true);
 
         }
 
