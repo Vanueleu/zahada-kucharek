@@ -46,6 +46,15 @@ void Update () {
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
     }
 
+    if (Input.GetKeyDown(KeyCode.F))
+    {
+        Fire();
+    }
+    else
+    {
+        anim.SetBool("IsAtacking", false);
+    }
+
     float moveInput = Input.GetAxisRaw("Horizontal");
     
     
@@ -87,6 +96,12 @@ void Update () {
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    private void Fire()
+    {
+        anim.SetBool("IsRunning", false);
+        anim.SetBool("IsAtacking", true);
     }
 
 
