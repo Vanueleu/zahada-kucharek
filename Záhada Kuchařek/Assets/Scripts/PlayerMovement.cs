@@ -9,6 +9,9 @@ private float speed = 8f;
 private float jumpingPower = 16f;
 private bool isFacingRight = true;
 
+private float timeBtwFire;
+public float startTimeBtwFire;
+
 private Animator anim;
 
 [SerializeField] private Rigidbody2D rb;
@@ -33,6 +36,7 @@ anim = GetComponent<Animator>();
 
 void Update () {
 
+    
     horizontal = Input.GetAxisRaw("Horizontal");
 
     if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -48,7 +52,14 @@ void Update () {
 
     if (Input.GetKeyDown(KeyCode.F))
     {
-        Fire();
+        if (timeBtwFire <= 0f)
+        {
+            anim.SetBool("IsAtacking", true);
+        }
+        else
+        {
+            timeBtwFire -= Time.deltaTime;
+        }
     }
     else
     {
@@ -96,12 +107,6 @@ void Update () {
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
-    }
-
-    private void Fire()
-    {
-        anim.SetBool("IsRunning", false);
-        anim.SetBool("IsAtacking", true);
     }
 
 
